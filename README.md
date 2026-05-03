@@ -193,7 +193,7 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 ### Autorización con Scopes
 
 #### Solicitante intenta asignar ticket — HTTP 403
-![Sin scope 403](evidencias/solicitante_errorPNG)
+![Sin scope 403](evidencias/solicitante_error.PNG)
 
 ---
 
