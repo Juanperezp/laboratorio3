@@ -167,16 +167,16 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 ### Creación de Usuarios
 
 #### Crear usuario solicitante
-![Crear usuario solicitante](evidencias/crear usuario solicitante.PNG)
+![Crear usuario solicitante](evidencias/crear_usuario_solicitante.PNG)
 
 #### Crear usuario responsable técnico
-![Crear usuario responsable](evidencias/02_crear_usuario_responsable.png)
+![Crear usuario responsable](evidencias/tecnico_responsable.png)
 
 #### Crear usuario auxiliar
-![Crear usuario auxiliar](evidencias/cruserespon3.PNG)
+![Crear usuario auxiliar](evidencias/crear_usuario_auxiliar.PNG)
 
 #### Crear usuario técnico especializado
-![Crear usuario tecnico](evidencias/crearuserespon4.PNG)
+![Crear usuario tecnico](evidencias/usuario_técnico_especializado.PNG)
 
 ---
 
@@ -187,7 +187,7 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 
 
 #### Acceso sin token — HTTP 401
-![Acceso sin token](evidencias/Acceso sin token.PNG)
+![Acceso sin token](evidencias/Acceso_sin_token.PNG)
 
 ---
 
@@ -196,16 +196,14 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 ### Reglas de Negocio del Ticket
 
 #### Solicitante crea ticket — HTTP 201
-![Crear ticket](evidencias/Solicitante crea ticket.PNG)
+![Crear ticket](evidencias/Solicitante_crea_ticket.PNG)
 
-#### Responsable técnico recibe ticket (solicitado → recibido)
-![Recibir ticket](evidencias/10_responsable_recibe_ticket.png)
 
 #### Responsable técnico asigna ticket (recibido → asignado)
-![Asignar ticket](evidencias/Solicitante crea ticket.PNG)
+![Asignar ticket](evidencias/técnico_asigna_ticket.PNG)
 
 #### Laboratorio creado
-![Laboratorio](evidencias/creacion de laboratorios.PNG)
+![Laboratorio](evidencias/creacion_laboratorios.PNG)
 
 #### Servicio consultado
 ![Servicio](evidencias/listar_servicios.PNG)
