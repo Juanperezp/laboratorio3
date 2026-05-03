@@ -167,48 +167,54 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 ### Creación de Usuarios
 
 #### Crear usuario solicitante
-![Crear usuario solicitante](evidencias/crear_usuario_solicitante.png)
+![Crear usuario solicitante](evidencias/crear_usuario_solicitante.PNG)
 
 #### Crear usuario responsable técnico
-![Crear usuario responsable](evidencias/tecnico_responsable.png)
+![Crear usuario responsable](evidencias/tecnico_responsable.PNG)
 
 #### Crear usuario auxiliar
-![Crear usuario auxiliar](evidencias/crear_usuario_auxiliar.png)
+![Crear usuario auxiliar](evidencias/crear_usuario_auxiliar.PNG)
 
 #### Crear usuario técnico especializado
-![Crear usuario tecnico](evidencias/usuario_técnico_especializado.png)
+![Crear usuario tecnico](evidencias/usuario_técnico_especializado.PNG)
 
 ---
 
 ### Autenticación JWT
 
 #### Login exitoso con token generado
-![Login exitoso](evidencias/login_solicitante.png)
-
+![Login exitoso](evidencias/login_solicitante.PNG)
 
 #### Acceso sin token — HTTP 401
-![Acceso sin token](evidencias/Acceso_sin_token.png)
+![Acceso sin token](evidencias/Acceso_sin_token.PNG)
 
 ---
 
+### Autorización con Scopes
 
+#### Solicitante intenta asignar ticket — HTTP 403
+![Sin scope 403](evidencias/Solicitante intenta asignar ticket (debe dar 403).PNG)
+
+---
 
 ### Reglas de Negocio del Ticket
 
 #### Solicitante crea ticket — HTTP 201
-![Crear ticket](evidencias/Solicitante_crea_ticket.png)
+![Crear ticket](evidencias/Solicitante_crea_ticket.PNG)
 
+#### Responsable técnico asigna ticket
+![Asignar ticket](evidencias/técnico_asigna_ticket.PNG)
 
+#### Estado del ticket
+![Estado ticket](evidencias/estado ticket.PNG)
 
 #### Laboratorio creado
-![Laboratorio](evidencias/creacion_laboratorios.png)
+![Laboratorio](evidencias/creacion_laboratorios.PNG)
 
-#### Servicio consultado
-![Servicio](evidencias/listar_servicios.png)
-
----
-
+#### Listar servicios
+![Servicio](evidencias/listar_servicios.PNG)
 ## Control de Versiones
+
 
 - Repositorio: https://github.com/Juanperezp/laboratorio3
 - Rama principal: `main`
