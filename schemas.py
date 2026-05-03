@@ -56,8 +56,12 @@ class UsuarioUpdate(BaseModel):
         return v
 
 
-class UsuarioOut(UsuarioBase):
+class UsuarioOut(BaseModel):
     id_usuario: int
+    nombre: str
+    correo: str
+    rol: str
+    activo: bool
 
     model_config = {"from_attributes": True}
 
@@ -182,3 +186,13 @@ class TokenData(BaseModel):
     id_usuario: Optional[int] = None
     rol: Optional[str] = None
     scopes: list[str] = []
+    
+    
+TicketRespuesta = TicketOut
+TicketCrear = TicketCreate
+TicketEstado = TicketEstadoUpdate
+LaboratorioCrear = LaboratorioCreate
+LaboratorioRespuesta = LaboratorioOut
+ServicioCrear = ServicioCreate
+ServicioRespuesta = ServicioOut
+Token = Token

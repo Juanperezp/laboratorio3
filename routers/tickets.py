@@ -6,7 +6,7 @@ from datetime import datetime
 import models
 import schemas
 
-router = APIRouter(prefix="/tickets", tags=["Tickets"])
+router = APIRouter(tags=["Tickets"])
 
 TRANSICIONES_PERMITIDAS = {
     "solicitado": "recibido",

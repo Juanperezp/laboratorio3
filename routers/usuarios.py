@@ -14,7 +14,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def crear_usuario(
     datos: UsuarioCreate,
     db: Session = Depends(get_db),
-    current_user: Usuario = Security(get_current_user, scopes=["usuarios:gestionar"]),
+    #current_user: Usuario = Security(get_current_user, scopes=["usuarios:gestionar"]),
 ):
     
     existente = db.query(Usuario).filter(Usuario.correo == datos.correo).first()

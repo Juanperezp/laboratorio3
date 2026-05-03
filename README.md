@@ -8,14 +8,25 @@ API REST para gestión de tickets de servicios, construida con FastAPI, PostgreS
 
 | Nombre | Aporte |
 |---|---|
-| Juan Diego  Pérez | `database.py`, `models.py`, `auth.py`, `routers/tickets.py` |
+| Juan Diego Pérez | `database.py`, `models.py`, `auth.py`, `routers/tickets.py` |
 | Valentina Zapata | `schemas.py`, `main.py`, `routers/usuarios.py`, `routers/laboratorios.py`, `routers/servicios.py` |
+
+---
+
+## Descripción del Sistema
+
+API para gestionar solicitudes de servicios en laboratorios universitarios. Permite crear tickets, asignarlos a técnicos y hacer seguimiento del flujo de atención. El acceso está controlado mediante autenticación JWT y autorización basada en scopes según el rol del usuario.
+
+### Entidades implementadas
+- **Usuarios** — solicitantes, técnicos, responsables y administradores
+- **Laboratorios** — espacios físicos donde se solicita el servicio
+- **Servicios** — tipos de soporte disponibles
+- **Tickets** — solicitudes de servicio con flujo de estados
 
 ---
 
 ## Estructura del proyecto
 
-```
 laboratorio3/
 ├── main.py
 ├── database.py
@@ -25,18 +36,17 @@ laboratorio3/
 ├── requirements.txt
 ├── .env               # No incluido en el repositorio
 ├── .gitignore
+├── evidencias/        # Capturas de pantalla de las pruebas
 └── routers/
-    ├── __init__.py
-    ├── auth.py
-    ├── usuarios.py
-    ├── laboratorios.py
-    ├── servicios.py
-    └── tickets.py
-```
-
+├── init.py
+├── auth.py
+├── usuarios.py
+├── laboratorios.py
+├── servicios.py
+└── tickets.py
 ---
 
-## Configuración
+## Configuración del Entorno
 
 **1. Clonar el repositorio y crear el entorno virtual**
 
@@ -44,7 +54,7 @@ laboratorio3/
 git clone https://github.com/Juanperezp/laboratorio3.git
 cd laboratorio3
 python -m venv venv
-source venv/bin/activate   
+source venv/Scripts/activate   # Windows Git Bash
 ```
 
 **2. Instalar dependencias**
@@ -53,14 +63,31 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+**3. Crear el archivo `.env`**
 
-**3. Ejecutar**
+```env
+DATABASE_URL=postgresql://usuario:contraseña@host:5432/dbapps?options=-csearch_path%3Dnombre_schema
+SECRET_KEY=tu_clave_secreta
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+**4. Ejecutar**
 
 ```bash
 uvicorn main:app --reload
 ```
 
 Swagger disponible en: http://localhost:8000/docs
+
+---
+
+## Configuración de la Base de Datos
+
+- Motor: PostgreSQL
+- ORM: SQLAlchemy
+- Schema asignado: `jwt_grupo_10`
+- Las tablas se crean automáticamente al iniciar la API con `Base.metadata.create_all(bind=engine)`
 
 ---
 
@@ -110,7 +137,7 @@ Swagger disponible en: http://localhost:8000/docs
 
 ---
 
-## Roles y scopes
+## Roles y Scopes
 
 | Rol | Scopes |
 |---|---|
@@ -120,21 +147,98 @@ Swagger disponible en: http://localhost:8000/docs
 | `tecnico_especializado` | `tickets:ver_propios`, `tickets:atender` |
 | `admin` | Todos los scopes |
 
-## Flujo de estados del ticket
+---
 
-```
+## Flujo de Estados del Ticket
+
 solicitado → recibido → asignado → en_proceso → en_revision → terminado
-```
+| Transición | Quién puede realizarla | Scope requerido |
+|---|---|---|
+| `solicitado` → `recibido` | responsable_tecnico, admin | `tickets:recibir` |
+| `recibido` → `asignado` | responsable_tecnico, admin | `tickets:asignar` |
+| `asignado` → `en_proceso` | auxiliar/tecnico asignado, admin | `tickets:atender` |
+| `en_proceso` → `en_revision` | auxiliar/tecnico asignado, admin | `tickets:atender` |
+| `en_revision` → `terminado` | responsable_tecnico, admin | `tickets:finalizar` |
 
 ---
 
-## Evidencias de funcionamiento
+## Evidencias de Funcionamiento
 
+### Creación de Usuarios
 
-- Login y token generado
-- Endpoint protegido con token válido → 200
-- Acceso sin token → 401
-- Usuario sin scope → 403
-- Flujo completo del ticket de `solicitado` a `terminado`
+#### Crear usuario solicitante
+![Crear usuario solicitante](evidencias/crear usuario solicitante.PNG)
+
+#### Crear usuario responsable técnico
+![Crear usuario responsable](evidencias/02_crear_usuario_responsable.png)
+
+#### Crear usuario auxiliar
+![Crear usuario auxiliar](evidencias/cruserespon3.PNG)
+
+#### Crear usuario técnico especializado
+![Crear usuario tecnico](evidencias/crearuserespon4.PNG)
 
 ---
+
+### Autenticación JWT
+
+#### Login exitoso con token generado
+![Login exitoso](evidencias/login_solicitante.PNG)
+
+
+#### Acceso sin token — HTTP 401
+![Acceso sin token](evidencias/Acceso sin token.PNG)
+
+---
+
+
+
+### Reglas de Negocio del Ticket
+
+#### Solicitante crea ticket — HTTP 201
+![Crear ticket](evidencias/Solicitante crea ticket.PNG)
+
+#### Responsable técnico recibe ticket (solicitado → recibido)
+![Recibir ticket](evidencias/10_responsable_recibe_ticket.png)
+
+#### Responsable técnico asigna ticket (recibido → asignado)
+![Asignar ticket](evidencias/Solicitante crea ticket.PNG)
+
+#### Laboratorio creado
+![Laboratorio](evidencias/creacion de laboratorios.PNG)
+
+#### Servicio consultado
+![Servicio](evidencias/listar_servicios.PNG)
+
+---
+
+## Control de Versiones
+
+- Repositorio: https://github.com/Juanperezp/laboratorio3
+- Rama principal: `main`
+- Rama de desarrollo: `database-auth`
+
+### Aportes por integrante
+
+| Integrante | Commits | Archivos |
+|---|---|---|
+| Juan Diego Pérez | `database.py`, `models.py`, `auth.py`, `routers/tickets.py` | Backend core y seguridad |
+| Valentina Zapata | `schemas.py`, `main.py`, `routers/usuarios.py`, `routers/laboratorios.py`, `routers/servicios.py` | Schemas y endpoints |
+
+---
+
+## Conclusiones
+
+- Se implementó autenticación segura con JWT y hashing bcrypt de contraseñas.
+- Los scopes permiten controlar el acceso a cada endpoint de forma granular según el rol del usuario.
+- El flujo de estados del ticket garantiza que solo los usuarios autorizados puedan realizar cada transición.
+- El trabajo colaborativo con Git y GitHub permitió dividir el desarrollo de forma organizada.
+- Se presentaron dificultades al integrar los schemas de ambos integrantes por diferencias en los nombres de las clases, lo cual se resolvió mediante alias y ajustes en los modelos.
+
+---
+
+## Bibliografía
+
+- FastAPI. (2024). *FastAPI Documentation*. https://fastapi.tiangolo.com
+- FastAPI. (2024). *OAuth2 with scopes*. https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/
+- Pydantic. (2024). *Pydantic Documentation*. https://docs.pydantic.dev

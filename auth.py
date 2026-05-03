@@ -79,3 +79,6 @@ def get_usuario_actual(
             )
 
     return usuario
+
+get_current_user = get_usuario_actual
+
