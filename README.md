@@ -169,14 +169,14 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 #### Crear usuario solicitante
 ![Crear usuario solicitante](evidencias/crear_usuario_solicitante.PNG)
 
-#### Crear usuario responsable técnico
-![Crear usuario responsable](evidencias/tecnico_responsable.png)
-
 #### Crear usuario auxiliar
 ![Crear usuario auxiliar](evidencias/crear_usuario_auxiliar.PNG)
 
 #### Crear usuario técnico especializado
 ![Crear usuario tecnico](evidencias/usuario_técnico_especializado.PNG)
+
+#### Crear usuario responsable técnico
+![Crear usuario responsable](evidencias/tecnico_responsable.PNG)
 
 ---
 
@@ -185,29 +185,46 @@ solicitado → recibido → asignado → en_proceso → en_revision → terminad
 #### Login exitoso con token generado
 ![Login exitoso](evidencias/login_solicitante.PNG)
 
+#### Autorización en Swagger
+![Authorize Swagger](evidencias/login solicitante.PNG)
 
 #### Acceso sin token — HTTP 401
 ![Acceso sin token](evidencias/Acceso_sin_token.PNG)
 
 ---
 
+### Autorización con Scopes
 
+#### Solicitante intenta asignar ticket — HTTP 403
+![Sin scope 403](evidencias/Solicitante intenta asignar ticket (debe dar 403).PNG)
+
+---
 
 ### Reglas de Negocio del Ticket
 
 #### Solicitante crea ticket — HTTP 201
 ![Crear ticket](evidencias/Solicitante_crea_ticket.PNG)
 
-
-#### Responsable técnico asigna ticket (recibido → asignado)
+#### Responsable técnico asigna ticket
 ![Asignar ticket](evidencias/técnico_asigna_ticket.PNG)
+
+#### Estado del ticket
+![Estado ticket](evidencias/estado ticket.PNG)
+
+#### Listar laboratorios
+![Listar laboratorios](evidencias/listar laboratorios.PNG)
 
 #### Laboratorio creado
 ![Laboratorio](evidencias/creacion_laboratorios.PNG)
 
-#### Servicio consultado
-![Servicio](evidencias/listar_servicios.PNG)
+#### Listar servicios
+![Servicios](evidencias/listar_servicios.PNG)
 
+#### Listar usuarios
+![Usuarios](evidencias/listar usuarios.PNG)
+
+#### Obtener laboratorio por id
+![Laboratorio por id](evidencias/Obtener laboratorios por id.PNG)
 ---
 
 ## Control de Versiones
